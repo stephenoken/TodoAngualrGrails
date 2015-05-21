@@ -1,0 +1,25 @@
+{
+  "name": "TodoAngular",
+  "version": "1.0.0",
+  "description": "Todo Grailsapp with an Angular front-end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephenoken/TodoAngualrGrails.git"
+  },
+  "keywords": [
+    "Grails",
+    "Todo",
+    "Example",
+    "Angular"
+  ],
+  "author": "stephenoken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenoken/TodoAngualrGrails/issues"
+  },
+  "homepage": "https://github.com/stephenoken/TodoAngualrGrails"
+}

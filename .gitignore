@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+.gradle/
+build/
+checkout/
+dist/
+output/
+/local.properties
+bin/
+tmp/
+.idea/
+*.iml
