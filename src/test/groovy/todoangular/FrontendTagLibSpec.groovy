@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.GroovyPageUnitTestMixin} for usage instructions
  */
-@TestFor(IndexTagLib)
-class IndexTagLibSpec extends Specification {
+@TestFor(FrontendTagLib)
+class FrontendTagLibSpec extends Specification {
 
     def setup() {
     }
