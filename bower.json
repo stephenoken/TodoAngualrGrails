@@ -1,0 +1,13 @@
+{
+  "name": "TodoAngular",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stephenoken/TodoAngualrGrails",
+  "authors": [
+    "Stephen O'Kennedy <stephenoken@gmail.com>"
+  ],
+  "description": "Front-end dependancies",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

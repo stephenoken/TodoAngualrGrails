@@ -2,6 +2,7 @@
 *.swp
 .gradle/
 build/
+node_modules/
 checkout/
 dist/
 output/
@@ -10,3 +11,7 @@ bin/
 tmp/
 .idea/
 *.iml
+npm-debug.log
+/src/main/webapp/css/*
+/src/main/webapp/js/*
+/bower_components/*
