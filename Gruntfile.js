@@ -24,6 +24,15 @@ module.exports = function (grunt) {
             concat:{
                 files:'grails-app/assets/javascripts/**/*.js',
                 tasks:['concat']
+            },
+
+            copy:{
+                files:'grails-app/assets/views/**/*',
+                tasks:['copy']
+            },
+
+            options: {
+                livereload: true
             }
         },
 
@@ -51,6 +60,15 @@ module.exports = function (grunt) {
                 src:['grails-app/assets/javascripts/**/*.js'],
                 dest:'./src/main/webapp/js/build.js'
             }
+        },
+
+        copy:{
+            main:{
+                expand:true,
+                cwd:'grails-app/assets/views/',
+                src: '**',
+                dest:'./src/main/webapp/views/'
+            }
         }
     });
 
@@ -58,8 +76,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('build',['less','concat']);
+    grunt.registerTask('build',['less','concat', 'copy']);
     grunt.registerTask('bootstrap',['bower:install']);
     grunt.registerTask('watcher',['watch']);
     grunt.registerTask('default',['build','watch','concat']);
