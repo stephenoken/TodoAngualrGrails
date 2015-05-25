@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head lang="en" >
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular todo</title>
+    <link rel="stylesheet" href="/lib/fontawesome/font-awesome.css">
+    <link rel="stylesheet" href="/css/main.css"  />
+
+    <!--Start Dependencies-->
+    <script src="/lib/jquery/jquery.js" type="text/javascript"></script>
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
+    <script src="/lib/angular-animate/angular-animate.js"></script>
+    <script src="/lib/angular-material/angular-material.js"></script>
+    <script src="/lib/angular-aria/angular-aria.js"></script>
+    <!--End Dependencies-->
+
+    <script src="/js/build.js" type="text/javascript"></script>
+    <script src="//192.168.192.26:35729/livereload.js"></script>
+</head>
+<body>
+<md-toolbar md-scroll-shrink class="md-accent">
+    <h2 class="md-toolbar-tools">
+        <span flex></span><span><md-button href="#/todos"><h1>Todo Central</h1></md-button></span><span flex></span>
+    </h2>
+</md-toolbar>
+    <div ng-view  layout="row" layout-fill layout-align="center center"></div>
+
+</body>
+</html>
