@@ -20,41 +20,34 @@
     <script src="//192.168.192.26:35729/livereload.js"></script>
 </head>
 <body ng-controller="TodoListCtrl">
-{{hello}}
-    <div layout="row">
-        <div flex offset="33">
-            <md-button class="md-raised md-primary">Primary</md-button>
-            <md-button class="md-button md-primary">
-                Nothing {{'Yet' + '!!'}}
-            </md-button>
-        </div>
-    </div>
-    <div layout="row" layout-align="center center">
-        <md-content class="md-padding md-whiteframe-z1" flex="50" >
-            <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height>
-                <md-tab ng-repeat="todo in todos" ng-disabled="todo.disable" label="{{todo.todoName}}">
-                    <div class="tab-body" ng-disabled="true">
-                        <md-content layout-padding layout="row" layout-sm="column">
-                            <md-list>
-                                <md-list-item class="md-3-line">
-                                    <div class="md-list-item-text">
-                                        <h3>{{todo.todoName}}</h3>
-                                        <md-checkbox ng-model="todo.isComplete" aria-label="Completed">
-                                            Completed: {{ todo.isComplete }}
-                                        </md-checkbox>
-                                        <p>{{todo.description}}</p>
-                                    </div>
-                                    <md-divider></md-divider>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>
-                    </div>
-                </md-tab>
-            </md-tabs>
+    <div layout="row" layout-fill layout-align="center center" >
+        <md-content class="md-whiteframe-z1" flex="75" >
+            <md-toolbar>
+                <h2 class="md-toolbar-tools">
+                    <span>Todos</span>
+                </h2>
+                <md-button class="md-warn md-fab md-fab-top-right">
+                    &#43;
+                </md-button>
+            </md-toolbar>
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="todo in todos" >
+                        <div  class="md-list-item-text">
+                            <h3>{{todo.todoName}}</h3>
+                            <h4>{{todo.importance}}</h4>
+                            <p>{{todo.description}}</p>
+                        </div>
+                        <div layout="column" layout-align="center center">
+                            <md-checkbox ng-model="todo.isComplete">
+                            </md-checkbox>
+                            <md-button class="md-raised md-accent" ng-click="edit($event)">Edit</md-button>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </md-content>
     </div>
-    <pre>
-        {{todos}}
-    </pre>
 </body>
 </html>

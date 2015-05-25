@@ -9,5 +9,6 @@ todoApp.config(['$mdThemingProvider',function($mdThemingProvider){
         .primaryPalette('green')
         .accentPalette('blue')
         .backgroundPalette('grey')
+        .warnPalette('red')
         ;
 }]);
