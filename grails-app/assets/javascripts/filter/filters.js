@@ -1,7 +1,7 @@
 /**
  * Created by stephenokennedy on 25/05/15.
  */
-angular.module('todoFilters',[]).filter('difficulty',function(){
+angular.module('todoFilters',[]).filter('importance',function(){
     return function(input){
         switch (input){
             case 1: return "Minor"

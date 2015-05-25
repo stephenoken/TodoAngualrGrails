@@ -23,7 +23,14 @@ class TodoController {
     def create() {
         respond new Todo(params)
     }
+    def test(){
+//        println request.JSON
+        Todo t = new Todo(request.JSON)
+        t.save flush: true
+        println t
+        render "Hello"
 
+    }
     @Transactional
     def save(Todo todo) {
         if (todo == null) {
