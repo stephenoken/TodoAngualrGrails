@@ -27,7 +27,7 @@ todoListControllers.controller('TodoListCtrl',['$scope','$http','$mdDialog',func
     };
 }]);
 
-todoListControllers.controller('TodoSaveCtrl',['$scope','$http',function($scope,$http){
+todoListControllers.controller('TodoSaveCtrl',['$scope','$http','$mdToast',function($scope,$http,$mdToast){
 
     $scope.createTodo = function(){
         $http({
@@ -38,8 +38,8 @@ todoListControllers.controller('TodoSaveCtrl',['$scope','$http',function($scope,
             headers: {'Content-Type': 'application/json; charset=utf-8'}
         }).
             success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
+                $mdToast.show($mdToast.simple().content(data));
+                $scope.newTodo = null;
             });
         console.log($scope.newTodo);
     }
