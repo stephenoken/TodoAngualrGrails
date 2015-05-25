@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Angular todo</title>
+    <link rel="stylesheet" href="/lib/fontawesome/font-awesome.css">
     <link rel="stylesheet" href="/css/main.css"  />
 
     <!--Start Dependencies-->
@@ -27,7 +28,7 @@
                     <span>Todos</span>
                 </h2>
                 <md-button class="md-warn md-fab md-fab-top-right">
-                    &#43;
+                    <i class="fa fa-plus"></i>
                 </md-button>
             </md-toolbar>
             <md-content>
@@ -35,7 +36,7 @@
                     <md-list-item class="md-3-line" ng-repeat="todo in todos" >
                         <div  class="md-list-item-text">
                             <h3>{{todo.todoName}}</h3>
-                            <h4>{{todo.importance}}</h4>
+                            <h4>{{todo.importance |difficulty}}</h4>
                             <p>{{todo.description}}</p>
                         </div>
                         <div layout="column" layout-align="center center">
@@ -43,7 +44,16 @@
                             </md-checkbox>
                             <md-button class="md-raised md-accent" ng-click="edit($event)">Edit</md-button>
                         </div>
-                        <md-divider ng-if="!$last"></md-divider>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line">
+                        <div layout="column" layout-align="center center">
+                        <p>{{completed()}}/{{todos.length}} Tasks Completed.</p>
+                        </div>
                     </md-list-item>
                 </md-list>
             </md-content>

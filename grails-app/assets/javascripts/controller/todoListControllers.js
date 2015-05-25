@@ -18,4 +18,11 @@ todoListControllers.controller('TodoListCtrl',['$scope','$http','$mdDialog',func
                 .targetEvent(ev)
         );
     }
+    $scope.completed = function(){
+        var count = 0;
+        angular.forEach($scope.todos,function(todo){
+            count += todo.isComplete ? 1:0;
+        });
+        return count;
+    }
 }]);

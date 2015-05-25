@@ -2,7 +2,7 @@
 /**
  * Created by stephenokennedy on 24/05/15.
  */
-var todoApp = angular.module('todoApp',['todoListControllers','ngMaterial']);
+var todoApp = angular.module('todoApp',['todoListControllers','ngMaterial','todoFilters']);
 
 todoApp.config(['$mdThemingProvider',function($mdThemingProvider){
     $mdThemingProvider.theme('default')
