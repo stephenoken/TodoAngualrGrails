@@ -8,15 +8,17 @@ todoListControllers.controller('TodoListCtrl',['$scope','$http','$mdDialog',func
         $scope.todos = data;
         console.log(data);
     });
-    $scope.edit = function(ev){
-        $mdDialog.show(
-            $mdDialog.alert()
-                .parent(angular.element(document.body))
-                .title("This is an edit dialog")
-                .content('Edit')
-                .ok('Got it')
-                .targetEvent(ev)
-        );
+    $scope.edit = function(ev,todo){
+        console.log(todo);
+        $mdDialog.show({
+            clickOutsideToClose: true,
+            //scope: $scope,
+            //preserveScope: true,
+            controller:'EditTodoDialogCtrl',
+            templateUrl:'views/partials/edit-todo.html',
+            targetEvent:ev,
+            locals: {todo:todo}
+        });
     };
     $scope.completed = function(){
         var count = 0;
@@ -33,14 +35,21 @@ todoListControllers.controller('TodoSaveCtrl',['$scope','$http','$mdToast',funct
         $http({
             method: 'POST',
             url: '/todo/test',
-            data: angular.toJson($scope.newTodo),
+            data: angular.toJson($scope.todo),
             dataType: 'json',//Need to explicitly say it's JSON
             headers: {'Content-Type': 'application/json; charset=utf-8'}
         }).
             success(function(data, status, headers, config) {
                 $mdToast.show($mdToast.simple().content(data));
-                $scope.newTodo = null;
+                $scope.todo = null;
             });
-        console.log($scope.newTodo);
+        console.log($scope.todo);
     }
+}]);
+
+todoListControllers.controller('EditTodoDialogCtrl',['$scope','$mdDialog','todo',function($scope,$mdDialog,todo){
+    $scope.todo = todo;
+    $scope.cancel = function() {
+        $mdDialog.hide();
+    };
 }]);

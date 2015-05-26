@@ -17,9 +17,9 @@
                         <p>{{todo.description}}</p>
                     </div>
                     <div layout="column" layout-align="center center">
-                        <md-checkbox ng-model="todo.isComplete">
+                        <md-checkbox ng-model="todo.isComplete" ng-change="">
                         </md-checkbox>
-                        <md-button class="md-raised md-accent" ng-click="edit($event)">Edit</md-button>
+                        <md-button class="md-raised md-accent" ng-click="edit($event,todo)">Edit</md-button>
                     </div>
                     <md-divider></md-divider>
                 </md-list-item>

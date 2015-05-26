@@ -1,0 +1,21 @@
+<div layout layout-sm="column">
+    <md-input-container flex>
+        <label>Name</label>
+        <input required ng-model="$parent.todo.todoName">
+        <div ng-messages="projectForm.clientName.$error">
+            <div ng-message="required">This is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container flex>
+        <label>Desciption</label>
+        <input ng-model="$parent.todo.description">
+    </md-input-container>
+</div>
+<div layout="column">
+    <md-select required placeholder="Importance" ng-model="$parent.todo.importance" >
+        <md-option value=1>{{1 |importance}}</md-option>
+        <md-option value=2>{{2 |importance}}</md-option>
+        <md-option value=3>{{3 |importance}}</md-option>
+        <md-option value=4>{{4 |importance}}</md-option>
+    </md-select>
+</div>
