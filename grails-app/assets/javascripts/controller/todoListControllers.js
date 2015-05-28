@@ -3,13 +3,9 @@
  */
 var todoListControllers = angular.module('todoListControllers',[]);
 
-todoListControllers.controller('TodoListCtrl',['$scope','$http','$mdDialog',function($scope,$http,$mdDialog){
-    $http.get('todo').success(function(data){
-        $scope.todos = data;
-        console.log(data);
-    });
+todoListControllers.controller('TodoListCtrl',['$scope','$mdDialog','TodoLists',function($scope,$mdDialog,TodoLists){
+    $scope.todos = TodoLists.query();
     $scope.edit = function(ev,todo){
-        console.log(todo);
         $mdDialog.show({
             clickOutsideToClose: true,
             //scope: $scope,
@@ -29,21 +25,18 @@ todoListControllers.controller('TodoListCtrl',['$scope','$http','$mdDialog',func
     };
 }]);
 
-todoListControllers.controller('TodoSaveCtrl',['$scope','$http','$mdToast',function($scope,$http,$mdToast){
-
+todoListControllers.controller('TodoSaveCtrl',['$scope','$mdToast','$location','TodoLists',function($scope,$mdToast,$location,TodoLists){
+    $scope.todo = new TodoLists();
     $scope.createTodo = function(){
-        $http({
-            method: 'POST',
-            url: '/todo/test',
-            data: angular.toJson($scope.todo),
-            dataType: 'json',//Need to explicitly say it's JSON
-            headers: {'Content-Type': 'application/json; charset=utf-8'}
-        }).
-            success(function(data, status, headers, config) {
-                $mdToast.show($mdToast.simple().content(data));
-                $scope.todo = null;
-            });
-        console.log($scope.todo);
+        $scope.todo.$save(
+            function(){//Successful callback
+            $mdToast.show($mdToast.simple().content("Todo has been created!!"));
+                $location.url('/todo');
+        },
+            function(){//Error callback
+                $mdToast.show($mdToast.simple().content("Sorry an error has occurred!"));
+            }
+        );
     }
 }]);
 

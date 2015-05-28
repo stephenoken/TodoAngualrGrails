@@ -2,7 +2,7 @@
 /**
  * Created by stephenokennedy on 24/05/15.
  */
-var todoApp = angular.module('todoApp',['todoListControllers','todoFilters','ngRoute','ngMaterial']);
+var todoApp = angular.module('todoApp',['todoListControllers','todoFilters','todoServices','ngRoute','ngMaterial']);
 
 todoApp.config(['$mdThemingProvider',function($mdThemingProvider){
     $mdThemingProvider.theme('default')
@@ -19,7 +19,7 @@ todoApp.config(['$routeProvider',function($routeProvider){
             templateUrl:'views/partials/todo-list.html',
             controller:'TodoListCtrl'
         })
-        .when('/new-todo',{
+        .when('/todo/new',{
             templateUrl:'views/partials/new-todo.html',
             controller:'TodoSaveCtrl'
         })

@@ -1,7 +1,7 @@
 <md-dialog aria-label="Mango (Fruit)">
     <form>
     <md-dialog-content class="sticky-container">
-        <md-subheader class="md-sticky-no-effect">Mango (Fruit)</md-subheader>
+        <md-subheader class="md-sticky-no-effect">{{todo.todoName}}</md-subheader>
         <div ng-include src="'/views/partials/todo-form.html'"></div>
         <div class="md-actions" layout="row">
             <md-button class="md-warn" ng-click="cancel()">Cancel</md-button>
