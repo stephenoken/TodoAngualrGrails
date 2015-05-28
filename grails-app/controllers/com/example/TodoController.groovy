@@ -24,6 +24,12 @@ class TodoController extends RestfulController{
         t.save flush: true
     }
 
+    def delete(Todo todoInstance){
+        println todoInstance
+        todoInstance.delete flush:true
+        render "Deleted"
+    }
+
 //    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 //
 //    def index(Integer max) {
@@ -78,30 +84,30 @@ class TodoController extends RestfulController{
 //        respond todo
 //    }
 //
-//    @Transactional
-//    def update(Todo todo) {
-//        if (todo == null) {
-//            transactionStatus.setRollbackOnly()
-//            notFound()
-//            return
-//        }
-//
-//        if (todo.hasErrors()) {
-//            transactionStatus.setRollbackOnly()
-//            respond todo.errors, view:'edit'
-//            return
-//        }
-//
-//        todo.save flush:true
-//
-//        request.withFormat {
-//            form multipartForm {
-//                flash.message = message(code: 'default.updated.message', args: [message(code: 'todo.label', default: 'Todo'), todo.id])
-//                redirect todo
-//            }
-//            '*'{ respond todo, [status: OK] }
-//        }
-//    }
+    @Transactional
+    def update(Todo todo) {
+        if (todo == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (todo.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond todo.errors, view:'edit'
+            return
+        }
+
+        todo.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'todo.label', default: 'Todo'), todo.id])
+                redirect todo
+            }
+            '*'{ respond todo, [status: OK] }
+        }
+    }
 //
 //    @Transactional
 //    def delete(Todo todo) {

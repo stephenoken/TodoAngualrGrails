@@ -4,7 +4,9 @@
         <md-subheader class="md-sticky-no-effect">{{todo.todoName}}</md-subheader>
         <div ng-include src="'/views/partials/todo-form.html'"></div>
         <div class="md-actions" layout="row">
-            <md-button class="md-warn" ng-click="cancel()">Cancel</md-button>
+            <md-button ng-click="cancel()">Cancel</md-button>
+            <md-button class="md-warn" ng-click="delete()">delete</md-button>
+            <md-button class="md-primary" ng-click="update()">Update</md-button>
             <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" show-md>
                 More on Wikipedia
             </md-button>

@@ -3,15 +3,23 @@
  */
 var todoServices = angular.module('todoServices',['ngResource']);
 
-todoServices.factory('TodoLists',['$resource',function($resource){
-    return $resource('todo/:todId',{},
+todoServices.factory('TodoService',['$resource',function($resource){
+    return $resource('todo/:todoId',{},
     {
+        get:{
+            url:'todo/show/:todoId'
+        },
         update:{
-            method:'PUT'
+            method:'PUT',
+            url:'todo/update/:todoId'
         },
         save:{
             method:'POST',
             url: '/todo/save'
+        },
+        delete:{
+            method:'DELETE',
+            url:'/todo/delete/:todoId'
         }
     });
 }]);
