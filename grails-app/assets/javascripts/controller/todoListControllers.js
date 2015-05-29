@@ -15,7 +15,7 @@ todoListControllers.controller('TodoListCtrl',['$scope','$mdDialog','TodoService
             targetEvent:ev,
             locals: {todo:todo}
         });
-
+        $scope.todos = TodoService.query();
     };
     $scope.completed = function(){
         var count = 0;
@@ -23,6 +23,13 @@ todoListControllers.controller('TodoListCtrl',['$scope','$mdDialog','TodoService
             count += todo.isComplete ? 1:0;
         });
         return count;
+    };
+    $scope.setComplete = function(todo){
+        TodoService.get({id:todo.id}).$promise.then(function(t) {
+            $scope.todo = t;
+        });
+        $scope.todo.isComplete = todo.isComplete;
+        $scope.todo.$update();
     };
 }]);
 
@@ -44,20 +51,19 @@ todoListControllers.controller('TodoSaveCtrl',['$scope','$mdToast','$location','
 todoListControllers.controller('EditTodoDialogCtrl',['$scope','$mdDialog','TodoService','todo',
     function($scope,$mdDialog,TodoService,todo){
     $scope.todo = new TodoService();
-    $scope.todo = todo;
+    $scope.todo = TodoService.get({id:todo});
     $scope.cancel = function() {
         $mdDialog.hide();
     };
     $scope.delete = function(){
-        //$scope.todo = TodoService.get({id:$scope.todo.id},function(){
-        //});
         $scope.todo.$delete({id:$scope.todo.id},function(){
         });
         $mdDialog.hide();
     }
     $scope.update = function(){
-        $scope.todo.$update({id:$scope.todo.id},function(){
-
+        $scope.todo.class = undefined;
+        $scope.todo.$update(function(){
+            $mdDialog.hide();
         });
     }
 }]);
