@@ -8,7 +8,9 @@
     <title>Angular todo</title>
     <link rel="stylesheet" href="/lib/fontawesome/font-awesome.css">
     <link rel="stylesheet" href="/css/main.css"  />
-
+    <!--Google OAuth 2.0-->
+    <meta name="google-signin-client_id" content="1076633364198-crg6ul35du803o1faranso5jgebumusd.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!--Start Dependencies-->
     <script src="/lib/jquery/jquery.js" type="text/javascript"></script>
     <script src="/lib/angular/angular.js"></script>
@@ -25,7 +27,23 @@
 <body>
 <md-toolbar md-scroll-shrink class="md-accent">
     <h2 class="md-toolbar-tools">
-        <span flex></span><span><md-button href="#/todos"><h1>Todo Central</h1></md-button></span><span flex></span>
+        <span flex>
+            <div ng-controller="GoogleCtrl">
+                <div ng-hide="oUser.isSignedIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+                <a ng-hide="!oUser.isSignedIn" href="#" onclick="signOut();">Sign out</a>
+            </div>
+        </span>
+        <span>
+            <md-button href="#/todos">
+                <h1>Todo Central</h1>
+            </md-button>
+        </span>
+        <span flex>
+            <div >
+                <img ng-src="{{oUser.getImageUrl()}}" class="md-avatar" alt="{{oUser.getEmail()+' profile image'}}" />
+                {{oUser.getName()}}
+            </div>
+        </span>
     </h2>
 </md-toolbar>
     <div ng-view  layout="row" layout-fill layout-align="center center"></div>

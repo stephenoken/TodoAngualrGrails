@@ -67,3 +67,25 @@ todoListControllers.controller('EditTodoDialogCtrl',['$scope','$mdDialog','TodoS
         });
     }
 }]);
+
+todoListControllers.controller('GoogleCtrl',['$rootScope',function($rootScope){
+    //Oauth methods - So long as the user is signed this method is called
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        $rootScope.oUser = profile;
+        $rootScope.isSignedIn = false;
+        $rootScope.$digest();
+    }
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+            $rootScope.isSignedIn = false;
+        });
+    }
+    window.onSignIn = onSignIn;
+}]);
